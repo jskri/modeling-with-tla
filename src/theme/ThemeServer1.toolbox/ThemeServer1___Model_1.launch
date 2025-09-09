@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.lamport.tla.toolbox.tool.tlc.modelCheck">
+    <stringAttribute key="configurationName" value="Model_1"/>
+    <intAttribute key="distributedFPSetCount" value="0"/>
+    <stringAttribute key="distributedNetworkInterface" value="192.168.1.63"/>
+    <intAttribute key="distributedNodesCount" value="1"/>
+    <stringAttribute key="distributedTLC" value="off"/>
+    <intAttribute key="fpIndex" value="98"/>
+    <intAttribute key="maxHeapSize" value="25"/>
+    <stringAttribute key="modelBehaviorInit" value=""/>
+    <stringAttribute key="modelBehaviorNext" value=""/>
+    <stringAttribute key="modelBehaviorSpec" value="Spec"/>
+    <intAttribute key="modelBehaviorSpecType" value="1"/>
+    <stringAttribute key="modelBehaviorVars" value="newPack, unsentPacks, packs"/>
+    <stringAttribute key="modelComments" value=""/>
+    <booleanAttribute key="modelCorrectnessCheckDeadlock" value="false"/>
+    <listAttribute key="modelCorrectnessInvariants">
+        <listEntry value="1TypeOK"/>
+    </listAttribute>
+    <listAttribute key="modelCorrectnessProperties"/>
+    <intAttribute key="modelEditorOpenTabs" value="8"/>
+    <stringAttribute key="modelExpressionEval" value=""/>
+    <listAttribute key="modelParameterConstants">
+        <listEntry value="PackTheme;;[p \in Pack |-&gt; p[1]];0;0"/>
+        <listEntry value="Pack;;{&lt;&lt;t1, 0&gt;&gt;, &lt;&lt;t1, 1&gt;&gt;, &lt;&lt;t1, 2&gt;&gt;,&#10; &lt;&lt;t2, 0&gt;&gt;, &lt;&lt;t2, 1&gt;&gt;};0;0"/>
+        <listEntry value="InitialPack;;&lt;&lt;t1, 0&gt;&gt;;0;0"/>
+        <listEntry value="NoPack;;NoPack;1;0"/>
+        <listEntry value="PackVersion;;[p \in Pack |-&gt; p[2]];0;0"/>
+        <listEntry value="Theme;;{t1, t2};1;0"/>
+        <listEntry value="IsNewestOfItsTheme;pack2:packs2:;\A p \in packs2:&#10;  (PackTheme[p] = PackTheme[pack2]) =&gt;&#10;    (PackVersion[pack2] &gt;= PackVersion[p]);0;0"/>
+    </listAttribute>
+    <intAttribute key="modelVersion" value="20191005"/>
+    <intAttribute key="numberOfWorkers" value="4"/>
+    <stringAttribute key="result.mail.address" value=""/>
+    <stringAttribute key="specName" value="ThemeServer1"/>
+    <stringAttribute key="tlcResourcesProfile" value="local custom"/>
+</launchConfiguration>

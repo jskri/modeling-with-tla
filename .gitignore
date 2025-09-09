@@ -1,0 +1,7 @@
+# LaTeX
+*.aux
+*.lof
+*.toc
+
+# TLA
+*.tlacache

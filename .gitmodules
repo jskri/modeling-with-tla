@@ -1,0 +1,3 @@
+[submodule "src/theme/implementation/zmqpp"]
+	path = src/theme/implementation/zmqpp
+	url = https://github.com/zeromq/zmqpp.git

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<!--
+    SPDX-FileCopyrightText: 2024 Younes IO <dev@younes.io>
+    SPDX-License-Identifier: MIT
+-->
+<language name="TLA+" version="1" kateversion="5.0" section="Sources" extensions="*.tla" mimetype="text/x-tlaplus" priority="5" author="Younes (dev@younes.io)">
+  <highlighting>
+    <list name="keywords">
+      <item>ASSUME</item>
+      <item>ASSUMPTION</item>
+      <item>AXIOM</item>
+      <item>CASE</item>
+      <item>CHOOSE</item>
+      <item>CONSTANT</item>
+      <item>CONSTANTS</item>
+      <item>DOMAIN</item>
+      <item>ELSE</item>
+      <item>ENABLED</item>
+      <item>EXCEPT</item>
+      <item>EXTENDS</item>
+      <item>IF</item>
+      <item>IN</item>
+      <item>INSTANCE</item>
+      <item>LET</item>
+      <item>LOCAL</item>
+      <item>MODULE</item>
+      <item>OTHER</item>
+      <item>SUBSET</item>
+      <item>THEN</item>
+      <item>THEOREM</item>
+      <item>UNCHANGED</item>
+      <item>UNION</item>
+      <item>VARIABLE</item>
+      <item>VARIABLES</item>
+      <item>WITH</item>
+
+      <item>LEMMA</item>
+      <item>BY</item>
+      <item>DEF</item>
+      <item>OMITTED</item>
+      <item>SUFFICES</item>
+      <item>PROVE</item>
+      <item>TRUE</item>
+      <item>FALSE</item>
+      <item>BOOLEAN</item>
+      <item>NEW</item>
+      <item>QED</item>
+      <item>USE</item>
+      <item>OBVIOUS</item>
+    </list>
+    <list name="operators">
+      <item>+</item>
+      <item>-</item>
+      <item>*</item>
+      <item>/</item>
+      <item>++</item>
+      <item>%</item>
+      <item>..</item>
+      <item>...</item>
+      <item>--</item>
+      <item>**</item>
+      <item>//</item>
+      <item>^^</item>
+      <item>&lt;:</item>
+      <item>:&gt;</item>
+      <item>&amp;</item>
+      <item>&amp;&amp;</item>
+      <item>|</item>
+      <item>%%</item>
+      <item>@@</item>
+      <item>##</item>
+      <item>$</item>
+      <item>$$</item>
+      <item>::=</item>
+      <item>??</item>
+      <item>!!</item>
+
+      <item>/\</item>
+      <item>\land</item>
+      <item>\/</item>
+      <item>\lor</item>
+      <item>=&gt;</item>
+      <item>~</item>
+      <item>\lnot</item>
+      <item>\neg</item>
+      <item>&lt;=&gt;</item>
+      <item>==</item>
+      <item>\in</item>
+      <item>\notin</item>
+      <item>/=</item>
+      <item>#</item>
+      <item>&lt;&lt;</item>
+      <item>&gt;&gt;</item>
+      <item>[]</item>
+      <item>&lt;</item>
+      <item>&gt;</item>
+      <item>&lt;&gt;</item>
+      <item>\leq</item>
+      <item>=&lt;</item>
+      <item>&lt;=</item>
+      <item>\geq</item>
+      <item>=&gt;=</item>
+      <item>~&gt;</item>
+      <item>\ll</item>
+      <item>\gg</item>
+      <item>-+-&gt;</item>
+      <item>\prec</item>
+      <item>\succ</item>
+      <item>|-&gt;</item>
+      <item>\preceq</item>
+      <item>\succeq</item>
+      <item>\div</item>
+      <item>\subseteq</item>
+      <item>\supseteq</item>
+      <item>\cdot</item>
+      <item>\subset</item>
+      <item>\supset</item>
+      <item>\o</item>
+      <item>\circ</item>
+      <item>\sqsubset</item>
+      <item>\sqsupset</item>
+      <item>\bullet</item>
+      <item>\sqsubseteq</item>
+      <item>\sqsupseteq</item>
+      <item>\star</item>
+      <item>|-</item>
+      <item>-|</item>
+      <item>\bigcirc</item>
+      <item>|=</item>
+      <item>=|</item>
+      <item>\sim</item>
+      <item>-&gt;</item>
+      <item>&lt;-</item>
+      <item>\simeq</item>
+      <item>\cap</item>
+      <item>\intersect</item>
+      <item>\cup</item>
+      <item>\union</item>
+      <item>\asymp</item>
+      <item>\sqcap</item>
+      <item>\sqcup</item>
+      <item>\approx</item>
+      <item>(+)</item>
+      <item>\oplus</item>
+      <item>\uplus</item>
+      <item>\cong</item>
+      <item>(-)</item>
+      <item>\ominus</item>
+      <item>\X</item>
+      <item>\times</item>
+      <item>\doteq</item>
+      <item>(.)</item>
+      <item>\odot</item>
+      <item>\wr</item>
+      <item>^</item>
+      <item>(\X)</item>
+      <item>\otimes</item>
+      <item>\propto</item>
+      <item>^+</item>
+      <item>(/)</item>
+      <item>\oslash</item>
+      <item>^*</item>
+      <item>\E</item>
+      <item>\exists</item>
+      <item>\A</item>
+      <item>\forall</item>
+      <item>^#</item>
+      <item>\EE</item>
+      <item>\AA</item>
+      <item>'</item>
+      <item>]_</item>
+      <item>&gt;_</item>
+      <item>WF_</item>
+      <item>SF_</item>
+      <item>\setminus</item>
+      <item>\</item>
+      <item>=</item>
+    </list>
+    <contexts>
+      <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+        <keyword attribute="Keyword" context="#stay" String="keywords"/>
+        <keyword attribute="Operator" context="#stay" String="operators"/>
+        <Float attribute="Float" context="#stay"/>
+        <Int attribute="Decimal" context="#stay"/>
+        <DetectChar attribute="String" context="String" char="&quot;"/>
+        <Detect2Chars attribute="Comment" context="SingleLineComment" char="\" char1="*" beginRegion="Comment"/>
+        <Detect2Chars attribute="Comment" context="MultiLineComment" char="(" char1="*" beginRegion="Comment"/>
+      </context>
+      <context attribute="String" lineEndContext="#pop" name="String">
+        <DetectChar attribute="String" context="#pop" char="&quot;"/>
+      </context>
+      <context attribute="Comment" lineEndContext="#pop" name="SingleLineComment">
+        <DetectSpaces/>
+        <IncludeRules context="##Alerts"/>
+        <DetectIdentifier/>
+      </context>
+      <context attribute="Comment" lineEndContext="#stay" name="MultiLineComment">
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1=")" endRegion="Comment"/>
+        <DetectSpaces/>
+        <IncludeRules context="##Alerts"/>
+        <DetectIdentifier/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+      <itemData name="Operator" defStyleNum="dsOperator"/>
+      <itemData name="Float" defStyleNum="dsFloat"/>
+      <itemData name="Decimal" defStyleNum="dsDecVal"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <comments>
+      <comment name="singleLine" start="\*"/>
+      <comment name="multiLine" start="(*" end="*)"/>
+    </comments>
+    <keywords casesensitive="1"/>
+  </general>
+</language>
