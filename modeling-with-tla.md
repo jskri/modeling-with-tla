@@ -125,12 +125,13 @@ Init ==
 ```
 
 Note: To facilitate the reading, this document uses a
-[font](fonts/FiraTlas-Regular.ttf) to render the ASCII version of the
-mathematical symbols as in the pretty printing of specs in PDF (see `File >
-Produce PDF Version`{.txt}). For instance, `==`{.tla}, `/\`{.tla} and
-`\in`{.tla} are respectively typed as "==", "/\\" and\ "\\in" in ASCII. You can
-of course also use the said font in the IDE. All model sources can be found
-[here](src/).
+[font](https://github.com/jskri/FiraTlas/releases/download/v0.1/FiraTlas-Regular.ttf)
+to render the ASCII version of the mathematical symbols as in the pretty
+printing of specs in PDF (see `File > Produce PDF Version`{.txt}). For instance,
+`==`{.tla}, `/\`{.tla} and `\in`{.tla} are respectively typed as "==", "/\\"
+and\ "\\in" in ASCII. You can of course also use the said font in the IDE. All
+model sources can be found
+[here](https://github.com/jskri/modeling-with-tla/tree/master/src).
 
 `==`{.tla} means "equals by definition", i.e. it is used to define new symbols.
 `/\`{.tla} is the boolean "and", and `\in`{.tla} means "belongs to set". Here,
@@ -190,8 +191,9 @@ marks the beginning of the specification, while
 ```
 marks its end. Do not write code beyond these boundaries!
 
-You can find this code [here](src/wallclock/WallClock.tla), with some small
-additions that will be covered later.
+You can find this code
+[here](https://github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClock.tla),
+with some small additions that will be covered later.
 
 "Variables - Init - Next" will be the basic skeleton of all our models. Indeed,
 a \TLA model is always defined inductively by an "initial state" predicate and
@@ -712,7 +714,7 @@ Next ==
 ```
 
 Code can be found
-[here](https://TODO/src/wallclock/WallClockAlarm.tla),
+[here](https://github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClockAlarm.tla),
 with some additions we'll see later.
 
 
@@ -1884,7 +1886,7 @@ one-step model under the mapping
 $(k, l) ⟼ (k, l),\ (k', l) ⟼ (k, l),\ (k', l') ⟼ (k', l')$
 
 You can find the code of the components, with a refinement proof
-[here](src/components/).
+[here](https://github.com/jskri/modeling-with-tla/tree/master/src/components/).
 
 The above disjunctive `Next`{.tla} represents simultaneity, which is mandatory
 in certain cases. Consider for instance a rail crossing with an incoming train
@@ -1978,7 +1980,7 @@ server. The following is the component diagram (The name `Theme2`{.tla} stems
 from the existence of a `Theme1`{.tla} model, that doesn't use components and
 that `Theme2`{.tla} refines. We won't examine `Theme1`{.tla} or the refinement
 proof but if you're curious you can find it here:
-[Theme1](https://TODO/src/theme/Theme1.tla))
+[Theme1](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme1.tla))
 
 
 <div id="theme_components"></div>
@@ -2401,10 +2403,10 @@ However, by decomposing the proof into sufficiently small steps, the
 justifications may be not so hard to find.
 
 The specification files can be found here:
-[Theme2.tla](https://TODO/src/theme/Theme2.tla),
-[Device1.tla](https://TODO/src/theme/Device1.tla)
+[Theme2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme2.tla),
+[Device1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Device1.tla)
 and
-[Server1.tla](https://TODO/src/theme/Server1.tla).
+[Server1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Server1.tla).
 
 
 ### Refining the model
@@ -2634,7 +2636,7 @@ their `Device1`{.tla} counterparts; `DeviceReceivesGetReply`{.tla} maps to
 ```
 
 The rest of the proof is straightforward. Here is the complete module:
-[ThemeDevice2.tla](https://TODO/src/theme/ThemeDevice2.tla)
+[ThemeDevice2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeDevice2.tla)
 
 #### Refining the server component
 
@@ -2655,7 +2657,7 @@ LEMMA NextRefinesServer1Next ==
 ```
 
 The proof presents no difficulty. You can find the complete module here:
-[ThemeServer2.tla](https://TODO/src/theme/ThemeServer2.tla)
+[ThemeServer2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer2.tla)
 
 #### Refining the theme model
 
@@ -2852,7 +2854,7 @@ The full proof of `<2>1`{.tla} is as follows:
 The proof of the server counterpart `<2>2`{.tla} is similar.
 
 The complete module with its proofs can be found here:
-[Theme3.tla](https://TODO/src/theme/Theme3.tla)
+[Theme3.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme3.tla)
 
 
 ## Recommendations
@@ -3113,8 +3115,8 @@ straightforward. Note that when searching for a pack to request, the first one
 the client does not have yet is picked.
 
 The source files can be found here:
-[common.hpp](https://TODO/src/theme/implementation/common.hpp),
-[client.cpp](https://TODO/src/theme/implementation/client.cpp)
+[common.hpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/common.hpp),
+[client.cpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/client.cpp)
 
 
 ### Server
@@ -3247,7 +3249,7 @@ logged in case of a get request. This is to complete the logs by
 post-processing. The rest of the implementation is unsurprising.
 
 The server can be found here:
-[server.cpp](https://TODO/src/theme/implementation/server.cpp),
+[server.cpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/server.cpp),
 
 ### Launch
 
@@ -3347,7 +3349,7 @@ The algorithm is:
     2. print $d$ in a formatted manner: `<<val1, ...>>, (* <event>, <timestamp> *)`{.txt}
 
 You can find here a python script implementing the algorithm:
-[merge_logs.py](https://TODO/src/theme/implementation/merge_logs.py)
+[merge_logs.py](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/merge_logs.py)
 
 The script can be run with:
 
@@ -3481,7 +3483,7 @@ the omission of the `WITH`{.tla} clause).
 
 We now create a checker configuration (called in the IDE a "TLC model") and
 assign assumption-compatible values to constants (see
-[`ThemeCommon2.tla`](https://TODO/src/theme/ThemeCommon2.tla)
+[`ThemeCommon2.tla`](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCommon2.tla)
 for assumptions). In the IDE, the configuration can be accessed through
 
 `TLC model checker > New Model > Model Overview > Model Description > What is the model?`{.txt}
@@ -3626,7 +3628,7 @@ Running the checker again results in no error. We can therefore say that the
 confidence in the implementation, we can produce more traces and check them.
 
 You can find here the replay model:
-[ThemeCheckImpl.tla](https://TODO/src/theme/ThemeCheckImpl.tla)
+[ThemeCheckImpl.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCheckImpl.tla)
 
 
 # Conclusion
