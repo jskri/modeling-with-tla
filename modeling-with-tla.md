@@ -1,3 +1,12 @@
+# License
+
+![](./cc-by.png)
+
+This work is licensed under a Creative Commons Attribution 4.0 International
+License: <https://creativecommons.org/licenses/by/4.0/>
+
+
+
 # Introduction
 
 This is a tutorial on modeling, or how to describe a system before implementing
