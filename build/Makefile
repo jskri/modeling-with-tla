@@ -2,7 +2,7 @@ TARGET := modeling-with-tla
 
 TITLE_PLAIN := Modeling with TLA+
 TITLE_TEX := Modeling with TLA$$^+$$
-VERSION := 0.2
+VERSION := 0.3
 DATE := december 2023
 ABSTRACT := This document is a tutorial for engineers on modeling with TLA$^+$.
 KEYWORDS := modeling, TLA+, model, checker, prover, refinement, composition
