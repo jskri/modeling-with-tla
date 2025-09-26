@@ -145,7 +145,7 @@ make modeling-with-tla.pdf
 Alternatively, you can use a docker image. At the root of the repository, type:
 
 ```bash
-docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" pandoc-with-make-and-tla-fonts:1.0 modeling-with-tla.pdf
+docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" dvnh87/pandoc-with-make-and-tla-fonts:1.0 modeling-with-tla.pdf
 ```
 
 The PDF is generated in `build/modeling-with-tla.pdf`.
@@ -153,5 +153,5 @@ The PDF is generated in `build/modeling-with-tla.pdf`.
 Note: You can clean with:
 
 ```bash
-docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" pandoc-with-make-and-tla-fonts:1.0 clean
+docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" dvnh87/pandoc-with-make-and-tla-fonts:1.0 clean
 ```
