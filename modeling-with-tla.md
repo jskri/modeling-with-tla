@@ -1902,12 +1902,13 @@ $(k, l) ⟼ (k, l),\ (k', l) ⟼ (k, l),\ (k', l') ⟼ (k', l')$
 You can find the code of the components, with a refinement proof
 [here](https://github.com/jskri/modeling-with-tla/tree/master/src/components/).
 
-The above disjunctive `Next`{.tla} represents simultaneity, which is mandatory
-in certain cases. Consider for instance a rail crossing with an incoming train
-and security gates. The gates must be down when the train passes. Let $x$ be the
-distance between the train and the crossing, and $y$ the angle in degrees of the
-gates (between $0$ and $90$, $0$ meaning "down"). An example behavior could be
-(with $(x, y)$ and a conjunctive `Next`{.tla}):
+The above disjunctive `Next`{.tla} represents simultaneity (under the given
+mapping), which is mandatory in certain cases. Consider for instance a rail
+crossing with an incoming train and security gates. The gates must be down when
+the train passes. Let $x$ be the distance between the train and the crossing,
+and $y$ the angle in degrees of the gates (between $0$ and $90$, $0$ meaning
+"down"). An example behavior could be (with $(x, y)$ and a conjunctive
+`Next`{.tla}):
 
 $(1000, 90) → (950, 80) → (900, 70) → ...$
 
