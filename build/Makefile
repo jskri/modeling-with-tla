@@ -2,6 +2,7 @@ TARGET := modeling-with-tla
 
 TITLE_PLAIN := Modeling with TLA+
 TITLE_TEX := Modeling with TLA$$^+$$
+AUTHOR := github.com/jskri
 VERSION := 0.4
 DATE := september 2025
 ABSTRACT := This document is a tutorial for engineers on modeling with TLA$^+$.
@@ -10,7 +11,7 @@ KEYWORDS := modeling, TLA+, model, checker, prover, refinement, composition
 HIGHLIGHT_STYLE := tango
 
 PANDOC := pandoc
-PANDOC_FLAGS := --standalone --toc -Vtitle-meta="$(TITLE_PLAIN)" -Vsubtitle="version $(VERSION)" -Vdate="$(DATE)" -Vabstract="$(ABSTRACT)" -Vkeywords="$(KEYWORDS)"
+PANDOC_FLAGS := --standalone --toc -Vtitle-meta="$(TITLE_PLAIN)" -Vauthor=$(AUTHOR) -Vsubtitle="version $(VERSION)" -Vdate="$(DATE)" -Vabstract="$(ABSTRACT)" -Vkeywords="$(KEYWORDS)"
 PANDOC_PDF_META_FLAGS := -Vtitle="$(TITLE_TEX)"
 PANDOC_PDF_FLAGS := --pdf-engine=xelatex --number-sections -Vlof=1 -Vmargin-left=3.5cm -Vmargin-right=3.5cm -Vcolorlinks -Vmonofont='FiraTlas-Regular' --syntax-definition=tla-syntax.xml --highlight-style $(HIGHLIGHT_STYLE) --include-in-header float_barrier.tex --include-in-header inline_code.tex --include-in-header code_block.tex $(PANDOC_PDF_META_FLAGS)
 LATEX := xelatex
