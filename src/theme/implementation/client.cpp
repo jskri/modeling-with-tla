@@ -40,9 +40,6 @@ auto logState(std::string_view event, State const& state, std::optional<Id> optI
 
 // spec: Theme3!Device2!DeviceSendsListRequest
 auto sendListRequest(Socket& socket, State const& state) -> void {
-  // spec: packs /= Pack
-  // We have no way to determine the set of all packs, so this guard is not implemented.
-
   // spec: request' = [op |-> "list"]
   auto msg = Message{};
   msg << MessageType::List;

@@ -77,7 +77,7 @@ this model to add an alarm feature.
 At a given time, a system is always in a precise *state*. In the case of the
 wall clock, we are not interested in detail such as the angle of each needle,
 but only in their logical values. That is, the state of the clock is given by
-the pair $(hour, minute)$, where $hour$ is in $0..12$ and $minute$ in $0..59$
+the pair $(hour, minute)$, where $hour$ is in $1..12$ and $minute$ in $0..59$
 (bounds are included). This state changes when one minute has elapsed. Thus, one
 sequence of clock's states is for instance:
 
@@ -100,10 +100,10 @@ system is simply a sequence of states.
 We now look at the syntax of \TLA. You may test as we go along by downloading
 the so-called ["\TLA toolbox" IDE](https://github.com/tlaplus/tlaplus/releases).
 A [VS Code
-extension](https://marketplace.visualstudio.com/items?itemName=alygin.vscode-tlaplus&ssr=false#overview)
-also exists, that seems nice (not tested though) but it does not support the
-prover yet so we will stick in this tutorial with the "toolbox" IDE (from now
-on, simply called IDE).
+extension](https://marketplace.visualstudio.com/items?itemName=tlaplus.vscode-ide)
+also exists, but its prover support is not complete at the time of this writing
+and we will stick in this tutorial with the "toolbox" IDE (from now on, simply
+called IDE).
 
 First, in the IDE create a new model (called here a "Spec"):
 `File > Open Spec > Add New Spec...`{.txt}
@@ -433,8 +433,10 @@ Initially, the alarm is unset (leftmost dot). Two things can then happen: one
 minute can elapse, or the user can set the alarm. If the user has set the alarm
 (middle dot), she can set it again, or unset it. Of course, time always
 continues flowing. If the alarm is set, the clock rings when the alarm time
-comes. When the clock is ringing (rightmost dot), the user can only stop the
-alarm. In particular, she cannot set or unset the alarm, by design choice.
+comes. Note that clock starts ringing immediately if the user sets the alarm to
+the current time. When the clock is ringing (rightmost dot), the user can only
+stop the alarm. In particular, she cannot set or unset the alarm, by design
+choice.
 
 What will define the state of our alarm clock model? We still have the current
 hour and the current minute, since time flows. But we also need the hour and
@@ -574,7 +576,7 @@ them):
 
 From an execution point of view, we can think of `\E`{.tla} as introducing
 *indeterminism*. A particular behavior of the system (i.e. a sequence of states)
-will "choose" a particular date in a random manner.
+will "choose" a particular date in an indeterminate manner.
 
 The last two events are straightforward:
 
@@ -594,8 +596,8 @@ UserStopsAlarm ==
 The user can unset the alarm (`UserUnsetsAlarm`{.tla}) only if the clock is not
 ringing (`~ ringing`{.tla}) and the alarm is set (`alarmDate /= Unset`{.tla}).
 `<<...>>`{.tla} represents a tuple, so `UNCHANGED <<now, ringing>>`{.tla} means
-that neither `now`{.tla} nor `ringing`{.tla} change. It is a shortcut for
-`UNCHANGED now /\ UNCHANGED ringing`{.tla}. The user can stop the alarm
+that neither `now`{.tla} nor `ringing`{.tla} change. It is logically equivalent
+to `UNCHANGED now /\ UNCHANGED ringing`{.tla}. The user can stop the alarm
 (`UserStopsAlarm`{.tla}) only if the clock is ringing.
 
 Finally, we write `Next`{.tla} as a disjunction of all events:
@@ -1628,7 +1630,7 @@ THEOREM Spec => []NonNegativeOrMinus5
 THEOREM InvariantNonNegativeOrMinus5 == Spec => []NonNegativeOrMinus5
 <1>1. Init => NonNegativeOrMinus5
   BY DEF Init, NonNegativeOrMinus5
-<1>2. NonNegativeOrMinus5 /\ [Next]_vars => NonNegativeOrMinus5'
+<1>2. NonNegativeOrMinus5 /\ [Next]_vars => NonNegativeOrMinus5' (* FAIL *)
   BY DEF NonNegativeOrMinus5, Next, vars
 <1>3. QED
   BY <1>1, <1>2, PTL DEF Spec
@@ -1722,13 +1724,14 @@ express a model in terms of components.
 
 ## Graphical formalism
 
-We introduce a graphical formalism to describe components, simplified from [this
+We introduce a graphical formalism to describe components, freely adapted from
+[this
 paper](https://link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf). A
 component has input variables, output variables and a control flow. Input
-variables are read-only, while output variables are read-write. The sets of
-input variables and output variables are disjoint. A component can also have any
-number of locations, which are used to describe the control flow, i.e. when the
-component starts and stops its execution. Locations for execution start can be
+variables are read, while output variables are written. A variable may be both
+input and output, for example in the case of a consumed variable. A component
+can also have any number of locations, which are used to describe the control
+flow, i.e. when the component starts and stops its execution. Locations can be
 guarded by boolean conditions (true if omitted).
 
 Here is a component:
@@ -1767,19 +1770,21 @@ composition of two other components:
 `C4`{.txt} and `C5`{.txt} run simultaneously. `C4`{.txt} outputs a variable
 `k`{.txt}, that is an input of `C5`{.txt}. This is how communication is
 represented. In this graphical formalism, we can stop at any desired level of
-details. Let's imagine `C4`{.txt} increments `k`{.txt} up to `100`{.txt}:
+details. Let's imagine `C4`{.txt} increments `k`{.txt} up to `10`{.txt}:
 
 <div id="atomic_component"></div>
 ![An atomic component](img/atomic_component.png){ width=35% }
 
 \FloatBarrier
 
-The top location is guarded: it can be entered only if `k < 100`{.txt}. The
-downward dashed arrow is labeled by `k' = k + 1`{.txt}, meaning that, when going
-back to the middle location, `k`{.txt} is incremented (as in \TLA, `k'`{.txt} is
-the value of `k`{.txt} in the next state). The right location can be entered
-only if `k ≥ 100`{.txt}. This means that `C4`{.txt} is a loop that increments
-`k`{.txt} up to `100`{.txt}.
+The left (entry) location is guarded by a condition on `k`{.txt}, which is
+internal. This means that `k = 0`{.txt} when entering `C4`{.txt}. The top
+location is also guarded and can be entered only if `k < 10`{.txt}. The downward
+dashed arrow is labeled by `k' = k + 1`{.txt}, meaning that, when going back to
+the middle location, `k`{.txt} is incremented (as in \TLA, `k'`{.txt} is the
+value of `k`{.txt} in the next state). The right (exit) location can be entered
+only if `k ≥ 10`{.txt}. This means that `C4`{.txt} is a loop that increments
+`k`{.txt} from `0`{.txt} to `10`{.txt}.
 
 
 ## Implementing in \TLA
@@ -1999,7 +2004,7 @@ proof but if you're curious you can find it here:
 
 The device and server components run in parallel and never stop. Externally, the
 observables are the device packs, the server packs and the selected device pack.
-Internally, the server communicates with the device by sending it new packs. We
+Internally, the server sends new packs to the device, which consumes them. We
 name the components "Device1" and "Server1" because they will be later refined.
 
 Here is the bulk of the model:
@@ -2077,11 +2082,11 @@ ASSUME Assumptions ==
 ==============================================================================
 ```
 
-We see here a common technique in \TLA: we declare all shared definitions
-(`Theme`{.tla}, `Pack`{.tla}...) as constants and constraint them with
-assumptions. Recall that a constant is a parameter of a model. The alternative
-to constants is to give definitions *in extenso*, but this complicates proofs
-because the same definitions (e.g. of `Theme`{.tla}) included in different
+We see here a common technique in \TLA: we declare shared definitions
+(`IsNewestOfItsTheme`{.tla}) as constants and constraint them with assumptions.
+Recall that a constant is a parameter of a model. The alternative to constants
+is to give definitions *in extenso*, but this complicates proofs because the
+same definitions (e.g. of `IsNewestOfItsTheme`{.tla}) included in different
 modules are seen by default as different by the prover.
 
 A pack has a theme and a version which is a non-negative integer. We distinguish
@@ -2089,11 +2094,13 @@ one initial pack, and one value for the absence of any pack (`NoPack`{.tla}).
 Note that we could have assumed that `Pack`{.tla} is a record set, e.g. `Pack =
 [theme: Theme, version: Nat]`{.tla}. Instead, we assume it is a set and is
 accompanied with appropriate functions (`PackTheme`{.tla}, `PackVersion`{.tla}).
-This is the recommended approach: it makes variable updating more flexible as
-different (sub-)events can update different parts of the variables (e.g. one can
-update the theme and another the version); more importantly, using functions
-makes life easier for the prover. In particular, the prover has difficulties
-with deep nested records, because of the big formulas this induces.
+This is the recommended approach. Indeed, each function represents a property of
+the considered objects (here packs). We do not pretend that these properties are
+a full description of the objects, but instead typically describe as little as
+needed by the current level of abstraction. This way, the object definition
+stays open and a refinement introducing a lower level of abstraction can easily
+add new properties (through functions). On a more technical side, the prover may
+struggle with deep nested records, due to the big formulas they induce.
 
 The diagram of the device component is as follows:
 
@@ -2502,7 +2509,6 @@ Init ==
 DeviceSendsListRequest ==
   /\ request = NoRequest
   /\ reply = NoReply
-  /\ packs /= Pack
   /\ request' = [op |-> "list"]
   /\ UNCHANGED <<packs, selectedPack, knownIds, reply>>
 
@@ -2883,6 +2889,22 @@ obvious. Also, if invariants / refinements are not to be proved but only checked
 (by the checker), it may be interesting to horizontally decompose even for
 smaller models.
 
+This part was heavy on proofs. In practice, working solely with the prover can
+be difficult, because when a proof fails we don't always know why. It may be
+that some facts and definitions are missing. Or the goal is too complex for the
+backends and requires further decomposition. It may also be that there is a
+mistake in the model. Or worse, what we want to prove may be false. For these
+reasons, it may be useful to use the checker before the prover. By providing
+more context, the checker can make it easier to detect silly mistakes in the
+model. It can also help build confidence that a property is invariant before
+attempting to prove it.
+
+Having different tools based on (subsets of) the same language is one of the
+strengths of \TLA. Other tools not covered in this document may also be useful,
+such as the [Apalache](https://apalache-mc.org/) checker to check whether an
+invariant is indeed inductive, so we encourage the reader to take a closer look
+at the \TLA ecosystem.
+
 
 
 # Conforming
@@ -3060,9 +3082,6 @@ Let's look more precisely at the implementation of
 ```cpp
 // spec: Theme3!Device2!DeviceSendsListRequest
 auto sendListRequest(Socket& socket, State const& state) -> void {
-  // spec: packs /= Pack
-  // We have no way to determine the set of all packs, so this guard is not implemented.
-
   // spec: request' = [op |-> "list"]
   auto msg = Message{};
   msg << MessageType::List;
@@ -3078,16 +3097,9 @@ Recall that the specification is:
 DeviceSendsListRequest ==
   /\ request = NoRequest
   /\ reply = NoReply
-  /\ packs /= Pack
   /\ request' = [op |-> "list"]
   /\ UNCHANGED <<packs, selectedPack, knownIds, reply>>
 ```
-
-The specification says that we can send a list request only if we don't have all
-packs yet (`packs /= Pack`{.tla}). In this implementation, we can't determine
-the set of all packs, so we ignore this guard. This implies that the client will
-indefinitely continue to send list requests, just in case new packs have arrived
-on the server.
 
 Note that in the implementation, we log the client state before sending the
 request. This is to keep log entries in the correct order. Indeed, if we log

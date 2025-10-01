@@ -29,7 +29,7 @@ THEOREM Spec => []NonNegativeOrMinus5
 THEOREM InvariantNonNegativeOrMinus5 == Spec => []NonNegativeOrMinus5
 <1>1. Init => NonNegativeOrMinus5
   BY DEF Init, NonNegativeOrMinus5
-<1>2. NonNegativeOrMinus5 /\ [Next]_vars => NonNegativeOrMinus5'
+<1>2. NonNegativeOrMinus5 /\ [Next]_vars => NonNegativeOrMinus5' (* FAIL *)
   BY DEF NonNegativeOrMinus5, Next, vars
 <1>3. QED
   BY <1>1, <1>2, PTL DEF Spec
