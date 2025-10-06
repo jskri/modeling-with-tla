@@ -3715,6 +3715,17 @@ ideas, tools, techniques is worth the trouble, especially as these ideas are
 quite standard and form the foundation of other formal tools.
 
 
+
+# Acknowledgements
+
+Thanks to the following people for their feedback. All errors are the author's.
+
+- [Stephan Merz](https://members.loria.fr/Stephan.Merz/)
+
+- [Andrew Helwer](https://ahelwer.ca/)
+
+
+
 # Sources
 
 - [Specifying systems (Lamport, 2002)](https://lamport.azurewebsites.net/tla/book.html#download)
