@@ -117,7 +117,7 @@ execution basis.
 
 ### Requirements
 
-To build the PDF, you will need:
+To build the PDF on Unix, you will need:
 
 - [Pandoc](https://pandoc.org): to convert from Markdown to PDF
 
@@ -150,7 +150,7 @@ docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" dvnh87/pandoc
 
 The PDF is generated in `build/modeling-with-tla.pdf`.
 
-Note: You can clean with:
+You can clean with:
 
 ```bash
 docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" dvnh87/pandoc-with-make-and-tla-fonts:1.0 clean
