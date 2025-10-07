@@ -3,8 +3,8 @@ TARGET := modeling-with-tla
 TITLE_PLAIN := Modeling with TLA+
 TITLE_TEX := Modeling with TLA$$^+$$
 AUTHOR := github.com/jskri
-VERSION := 0.4
-DATE := september 2025
+VERSION := 0.5
+DATE := october 2025
 ABSTRACT := This document is a tutorial for engineers on modeling with TLA$^+$.
 KEYWORDS := modeling, TLA+, model, checker, prover, refinement, composition
 # Possible highlight styles in pandoc 3.7.0.2: pygments, tango, espresso, zenburn, kate, monochrome, breezedark, haddock
