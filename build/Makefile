@@ -12,10 +12,8 @@ HIGHLIGHT_STYLE := tango
 
 PANDOC := pandoc
 PANDOC_FLAGS := --standalone --toc --template=template_latex.pandoc -Vtitle-meta="$(TITLE_PLAIN)" -Vauthor="$(AUTHOR)" -Vsubtitle="version $(VERSION)" -Vdate="$(DATE)" -Vabstract="$(ABSTRACT)" -Vkeywords="$(KEYWORDS)"
-# PANDOC_FLAGS := --standalone --toc --template=template_latex.pandoc
 PANDOC_PDF_META_FLAGS := -Vtitle="$(TITLE_TEX)"
 PANDOC_PDF_FLAGS := --pdf-engine=xelatex --number-sections -Vlof=1 -Vmargin-left=3.5cm -Vmargin-right=3.5cm -Vcolorlinks -Vmonofont='FiraTlas-Regular' --syntax-definition=tla-syntax.xml --highlight-style $(HIGHLIGHT_STYLE) --include-in-header float_barrier.tex --include-in-header inline_code.tex --include-in-header code_block.tex $(PANDOC_PDF_META_FLAGS)
-# PANDOC_PDF_FLAGS := --pdf-engine=xelatex --number-sections -Vlof=1 -Vmargin-left=3.5cm -Vmargin-right=3.5cm -Vcolorlinks -Vmonofont='FiraTlas-Regular' --syntax-definition=tla-syntax.xml --highlight-style $(HIGHLIGHT_STYLE) --include-in-header float_barrier.tex --include-in-header inline_code.tex --include-in-header code_block.tex
 LATEX := xelatex
 LATEX_FLAGS :=
 
