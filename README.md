@@ -1,4 +1,4 @@
-# Modeling with TLA+
+# Modeling with TLA+ for Engineers
 
 
 ## Outline
