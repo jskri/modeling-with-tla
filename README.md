@@ -137,7 +137,7 @@ To build the PDF on Unix, you will need:
 
 ```bash
 cd build/
-make modeling-with-tla.pdf
+make modeling-with-tla-for-engineers.pdf
 ```
 
 ### Docker image
@@ -145,10 +145,10 @@ make modeling-with-tla.pdf
 Alternatively, you can use a docker image. At the root of the repository, type:
 
 ```bash
-docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" dvnh87/pandoc-with-make-and-tla-fonts:1.0 modeling-with-tla.pdf
+docker run --rm --volume "$(pwd):/data" --user "$(id -u):$(id -g)" dvnh87/pandoc-with-make-and-tla-fonts:1.0 modeling-with-tla-for-engineers.pdf
 ```
 
-The PDF is generated in `build/modeling-with-tla.pdf`.
+The PDF is generated in `build/modeling-with-tla-for-engineers.pdf`.
 
 You can clean with:
 
