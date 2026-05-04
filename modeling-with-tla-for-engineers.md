@@ -1426,8 +1426,8 @@ are obviously missing. Here is a successful proof:
 Since the definition of `TypeOK`{.tla} is used many times, we can make its use
 implicit through an unnumbered `USE`{.tla} step. After \setSimpleFont `<<level>>
 USE <fact1>, <fact2>, ... DEF <symbol1>, <symbol2>, ...`{.txt} \unsetSimpleFont,
-all subsequent steps at the same level will automatically use the given facts
-and expand the given symbols with their definitions.
+all subsequent steps at greater or equal levels will automatically use the given
+facts and expand the given symbols with their definitions.
 
 Here is the full final proof of `Spec => []TypeOK`{.tla}:
 
