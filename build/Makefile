@@ -1,7 +1,7 @@
-TARGET := modeling-with-tla-for-engineers
+TARGET := modeling-proving-refining-conforming-with-tla-for-engineers
 
-TITLE_PLAIN := Modeling with TLA+ for Engineers
-TITLE_TEX := Modeling with TLA$$^+$$ for Engineers
+TITLE_PLAIN := Modeling, Proving, Refining and Conforming with TLA+: An Engineering Perspective
+TITLE_TEX := Modeling, Proving, Refining and Conforming with TLA$$^+$$: An Engineering Perspective
 AUTHOR := jskri@proton.me
 VERSION := 0.7
 DATE := May 2026
