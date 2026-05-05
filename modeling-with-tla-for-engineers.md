@@ -51,13 +51,15 @@ The goal of this tutorial is to provide an integrated overview of modeling from
 an engineering perspective. This includes topics such as how to incrementally
 refine a model, how to decompose it if it becomes too large, how to check it
 through simulation, how to prove its interesting properties and finally, how to
-check that an implementation effectively conforms to its model.
+check that an implementation run effectively conforms to its model.
 
 We will in the first part introduce essential notions, simulation, refinement
 and basic proofs through the example of a wall clock. In the second part, we
 will tackle model (de)composition through the example of a simple client-server
 exchange mechanism. In the third and final part, we will implement the system of
 the second part and show how to check it conforms to its model.
+
+Each section of the first part ends with a short quiz to check understanding.
 
 
 # Modeling, checking, refining, proving
@@ -1899,7 +1901,7 @@ one-step model under the mapping
 
 $(k, l) ⟼ (k, l),\ (k', l) ⟼ (k, l),\ (k', l') ⟼ (k', l')$
 
-You can find the code of the components, with a refinement proof
+The code of the components, with a refinement proof, is available
 [here](https://github.com/jskri/modeling-with-tla/tree/master/src/components/).
 
 The above disjunctive `Next`{.tla} represents simultaneity (under the given
@@ -2672,7 +2674,8 @@ LEMMA NextRefinesServer1Next ==
 <1>5. QED
 ```
 
-The proof presents no difficulty. You can find the complete module here:
+The proof presents no difficulty. The source of the complete module can be found
+here:
 [ThemeServer2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer2.tla)
 
 #### Refining the theme model
@@ -2733,8 +2736,9 @@ Spec ==
 ```
 
 As previously stated, `request`{.tla} and `reply`{.tla} are the communication
-variables. We skip the `TypeOK`{.tla} proof and go directly to the refinement,
-whose mapping is identical to previous ones:
+variables. We skip the `TypeOK`{.tla} proof (as it follows the same pattern as
+`Theme2`{.tla}) and go directly to the refinement, whose mapping is identical to
+previous ones:
 
 ```tla
 Theme2 == INSTANCE Theme2 WITH newPack <- NewPack(reply)
@@ -3649,7 +3653,7 @@ Running the checker again results in no error. We can therefore say that the
 `Theme3`{.tla} implementation was in this case correct. To gain a greater
 confidence in the implementation, we can produce more traces and check them.
 
-You can find here the replay model:
+The replay model is available here:
 [ThemeCheckImpl.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCheckImpl.tla)
 
 
@@ -3718,7 +3722,8 @@ quite standard and form the foundation of other formal tools.
 
 # Acknowledgements
 
-Thanks to the following people for their feedback. All errors are the author's.
+Thanks to the following people for their feedback. All remaining errors are the
+author's own.
 
 - [Stephan Merz](https://members.loria.fr/Stephan.Merz/)
 
