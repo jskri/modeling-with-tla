@@ -1,6 +1,9 @@
 name: Build PDF
 
-on: workflow_dispatch # manual trigger
+on:
+  schedule:
+    - cron: "0 0 1 1,3,5,7,9,11 *" 
+  workflow_dispatch: # manual trigger
 
 jobs:
   convert_via_pandoc:
