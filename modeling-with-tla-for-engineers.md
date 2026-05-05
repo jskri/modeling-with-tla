@@ -14,7 +14,7 @@ it. When we want to solve a problem, we always have some kind of mental model.
 This mental model is usually implicit, partial and quite fuzzy. Modeling is
 about making this mental model explicit, which has several benefits.
 
-First, it allows us to better understand the problem we want to solve. This is
+First, it allows us to better understand the problem we want to solve. It is
 generally the case that making things explicit makes us realize how limited our
 initial understanding was. Making things explicit raises new questions that must
 be answered. Thus, we solve design problems as early as possible, and we avoid
@@ -22,23 +22,23 @@ as much as possible the situation where they are discovered during the
 implementation phase. And of course, the sooner design problems are discovered,
 the cheaper.
 
-Second, modeling implies objectiveness. We could say that modeling is analog to
+Second, modeling implies objectivity. We could say that modeling is analogous to
 drawing blueprints before starting the construction of a building. Using some
 formalism, our model can be understood by various people, independently of their
 cultures or preferences. On the contrary, when we leave our mental model
 implicit, communicating it in a faithful manner is more difficult. Each person
-will in fact have his own mental model slightly (or not so slightly) different
-from other's. And serious problems start when people think they have understood
-each other while their views are incompatible. So making communication easier
-and more reliable is a second benefit of modeling.
+will in fact have their own mental model slightly (or not so slightly) different
+from those of others. And serious problems start when people think they have
+understood each other while their views are incompatible. So making
+communication easier and more reliable is a second benefit of modeling.
 
 Third, modeling usually enables us to use tools to help us. One example is the
 ability to perform simulations to predict how the system to build will behave.
 This is common to all engineering branches: a bridge wouldn't be built without
-simulating its behavior with respect to wind or earthquakes, or a rocket
-wouldn't be built without some physical model. Sometimes modeling comes with
-tools that allow us to prove the properties of our system. For instance, we may
-be interested in some safety properties being invariant (e.g. "it is always the
+simulating its behavior with respect to wind or earthquakes, nor would a rocket
+be built without a physical model. Sometimes modeling comes with tools that
+allow us to prove the properties of our system. For instance, we may be
+interested in some safety properties being invariant (e.g. "it is always the
 case that the cover is closed when the robot moves").
 
 In this tutorial, we will use the
@@ -67,9 +67,9 @@ the second part and show how to check it conforms to its model.
 ### Modeling
 
 Let's begin with the model of a wall clock. A model is always a simplification
-of the reality, and it is our responsibility to decide how much we want to
-simplify it. For now, we'll describe a simple clock with only two needles, one
-for minutes and one for hours. The only event we'll be interested in is the fact
+of reality, and it is our responsibility to decide how much we want to simplify
+it. For now, we'll describe a simple clock with only two needles, one for
+minutes and one for hours. The only event we'll be interested in is the fact
 that one minute has just elapsed. This simple setting will allow us to introduce
 the essential notions of modeling with \TLA. In a second step, we will refine
 this model to add an alarm feature.
@@ -79,7 +79,7 @@ wall clock, we are not interested in detail such as the angle of each needle,
 but only in their logical values. That is, the state of the clock is given by
 the pair $(hour, minute)$, where $hour$ is in $1..12$ and $minute$ in $0..59$
 (bounds are included). This state changes when one minute has elapsed. Thus, one
-sequence of clock's states is for instance:
+sequence of the clock's states is for instance:
 
 $(8, 27) → (8, 28) → (8, 29) → ...$
 
@@ -93,7 +93,7 @@ Describing a model in \TLA is done basically in three steps:
 
 An event makes the system "jump" from one state to another. We will generally
 call a jump a *step*. The systems described in \TLA are discrete, not
-continuous. Continuous systems are good to describe natural phenomenons, while
+continuous. Continuous systems are good to describe natural phenomena, while
 discrete systems are good to describe computer systems. A *behavior* of the
 system is simply a sequence of states.
 
@@ -173,7 +173,7 @@ $$(hour=8, minute=27) → (hour'=5, minute'=13)$$
 
 is of course not.
 
-That's it, we've just described our first very simple model. The whole code is:
+This completes our first simple model. The whole code is:
 
 ```tla
 ------------------------------ MODULE WallClock ------------------------------
@@ -405,7 +405,7 @@ Let's refine our basic wall clock. We now add an alarm feature: the user can set
 an alarm, unset it, the clock rings when the alarm time comes, and the user can
 stop a ringing clock. The resulting system can be split into two parts: the
 *internal part* that describes the clock's internal dynamics (the needles that
-moves when one minute has elapsed, the alarm that triggers when time comes), and
+move when one minute has elapsed, the alarm that triggers when time comes), and
 the external part or *environment* (the user acting on the clock). What we
 describe here is a closed system: a system encompassing its environment. Here is
 a general diagram of closed systems:
@@ -415,7 +415,7 @@ a general diagram of closed systems:
 
 \FloatBarrier
 
-This specialises in this diagram in the case of our alarm wall clock:
+This is specialised for the alarm wall clock case in the following diagram:
 
 <div id="diagram_alarm_wall_clock_system"></div>
 ![The alarm wall clock system](img/alarm_wallclock_system.png){ width=70% }
@@ -433,9 +433,9 @@ Initially, the alarm is unset (leftmost dot). Two things can then happen: one
 minute can elapse, or the user can set the alarm. If the user has set the alarm
 (middle dot), she can set it again, or unset it. Of course, time always
 continues flowing. If the alarm is set, the clock rings when the alarm time
-comes. Note that clock starts ringing immediately if the user sets the alarm to
-the current time. When the clock is ringing (rightmost dot), the user can only
-stop the alarm. In particular, she cannot set or unset the alarm, by design
+comes. Note that the clock starts ringing immediately if the user sets the alarm
+to the current time. When the clock is ringing (rightmost dot), the user can
+only stop the alarm. In particular, she cannot set or unset the alarm, by design
 choice.
 
 What will define the state of our alarm clock model? We still have the current
@@ -984,7 +984,7 @@ states are type-OK.
 
 To prove this, we must first prove that all initial states are type-OK. Then
 that if a state is type-OK, any of its next states are also type-OK. This is a
-classical proof by induction, with a base case (initial states) and a induction
+classical proof by induction, with a base case (initial states) and an induction
 case (next steps).
 
 In \TLA, proofs are done in a declarative way: we don't instruct the prover
@@ -1305,7 +1305,7 @@ get:
 
 The proof of the `QED`{.tla} step (`<Ctrl-G><Ctrl-G>`{.txt}) succeeds,
 confirming that the decomposition is correct. Repeating the hypotheses in each
-new obligation can be a bit fastidious, especially in more complex proofs, so we
+new obligation can be a bit tedious, especially in more complex proofs, so we
 can apply the $⇒$-rule before the $∨$-rule, i.e. we can put first `TypeOK /\
 [Next]_vars`{.tla} as a hypothesis:
 
@@ -1489,8 +1489,8 @@ refinement mapping (i.e. respects `[Abstract!Next]_Abstract!vars`{.tla}).
 
 Intuitively, this means that we can traverse each $B$-behavior and its
 correspondent in $A$ in a parallel manner. A diagram of a small example will be
-clearer (arrow labels are just identifier, they do not indicate events here ;
-colors indicate the mapping ; stuttering steps are omitted):
+clearer (arrow labels are just identifiers, they do not indicate events here ;
+colors indicate the mapping; stuttering steps are omitted):
 
 <div id="diagram_model_mapping"></div>
 ![A mapping from a model $N$ to a model $M$](img/mapping.png){ width=70% }
@@ -1528,7 +1528,7 @@ As usual, the biggest part of the proof is the induction step (`<1>2`{.tla}).
 The approach we use is to prove that each disjunct of the concrete `Next`{.tla}
 (i.e. in `WallClockAlarm`{.tla}) implies a disjunct of the abstract `Next`{.tla}
 (i.e. in `WallClock`{.tla}): `OneMinuteHasElapsed`{.tla} implies
-`Abstract!Next`{.tla} and the other $B$-events implies stuttering. To make this
+`Abstract!Next`{.tla} and the other $B$-events imply stuttering. To make this
 more apparent, we won't use the `CASE`{.tla} command this time. Here is the
 whole proof of the refinement:
 
@@ -1669,7 +1669,7 @@ the section.
 
 3. State space explosion is:
 
-    a. the quick raise of the number of states when enriching the system's variables
+    a. the quick rise of the number of states when enriching the system's variables
 
     b. an exploit on some model checkers
 
@@ -1757,7 +1757,7 @@ component `C1`{.txt} as the serial composition of components `C2`{.txt} and
 
 \FloatBarrier
 
-Note that control flow is not necessarily correlated to data flow.
+Note that control flow is not necessarily correlated with data flow.
 
 We can then imagine that the component `C3`{.txt} is itself the parallel
 composition of two other components:
@@ -1862,7 +1862,7 @@ Next ==
 ```
 
 The conjunction used here, instead of the usual disjunction, means that
-`C4`{.tla} and `C5`{.tla} conjointly define a single step. While appealing, this
+`C4`{.tla} and `C5`{.tla} jointly define a single step. While appealing, this
 approach makes communication between `C4`{.tla} and `C5`{.tla} difficult, so it
 is preferable to rely on an (alternate) disjunction. Indeed, if `C3`{.tla}'s
 state has the form $(k, l)$ with `C4`{.tla} modifying $k$ and `C5`{.tla}
@@ -1990,7 +1990,7 @@ versions. Internally, a theme is represented by a pack, which notably contains
 this version. The company can add new packs on the server, which are then sent
 to the device.
 
-The system can be obviously split into two components: the device and the
+Obviously, the system can be split into two components: the device and the
 server. The following is the component diagram (The name `Theme2`{.tla} stems
 from the existence of a `Theme1`{.tla} model, that doesn't use components and
 that `Theme2`{.tla} refines. We won't examine `Theme1`{.tla} or the refinement
@@ -2084,7 +2084,7 @@ ASSUME Assumptions ==
 ```
 
 We see here a common technique in \TLA: we declare shared definitions
-(`IsNewestOfItsTheme`{.tla}) as constants and constraint them with assumptions.
+(`IsNewestOfItsTheme`{.tla}) as constants and constrain them with assumptions.
 Recall that a constant is a parameter of a model. The alternative to constants
 is to give definitions *in extenso*, but this complicates proofs because the
 same definitions (e.g. of `IsNewestOfItsTheme`{.tla}) included in different
@@ -2968,7 +2968,7 @@ Let us now see the concrete details of the implementation. We will concentrate
 on the internal part of the system, implementing a client (the "device") and a
 server. In particular, we are not interested here in
 `Device2!UserSelectsATheme`{.tla} and `Device2!UserUpgradesSelectedTheme`{.tla} as
-they belong to the environment part. The implementation will be done in C++(20)
+they belong to the environment part. The implementation will be done in C++20
 and the communication will use the [ZeroMQ socket library](https://zeromq.org/)
 for convenience. Note that this implementation will be a bit naive to avoid too
 much details that would obfuscate our purpose of exposing how an implementation
@@ -3071,10 +3071,10 @@ while (true) {
 \unsetSimpleFont
 
 One iteration consists of sequentially sending a list request, receiving the
-reply, maybe sending a get request (if the server has a pack the client doesn't
-have yet) and receiving the reply if need be. Each step is synchronous, and in
-particular receiving steps are blocking. `state`{.cpp} groups the client packs
-and its known pack ids.
+reply, and possibly sending a get request (if the server has a pack the client
+doesn't have yet) and receiving the reply if need be. Each step is synchronous,
+and in particular receiving steps are blocking. `state`{.cpp} groups the client
+packs and its known pack ids.
 
 Let's look more precisely at the implementation of
 `DeviceSendsListRequest`{.cpp}:
@@ -3132,7 +3132,7 @@ environment part of the model. The post-processing will use a single valid
 initial value and complete each log entry with it.
 
 The implementations of `DeviceReceivesListReply`{.tla},
-`DeviceReceivesGetReply`{.tla} and `DeviceReceivesGetReply`{.tla} are quite
+`DeviceSendsGetRequest`{.tla} and `DeviceReceivesGetReply`{.tla} are quite
 straightforward. Note that when searching for a pack to request, the first one
 the client does not have yet is picked.
 
@@ -3196,7 +3196,7 @@ while (true) {
 ```
 \unsetSimpleFont
 
-`checkAddedPacks`{.tla} reads the server packs file and adds any new pack to the
+`checkAddedPacks`{.cpp} reads the server packs file and adds any new pack to the
 server packs. This effectively implements
 `Theme3!Server2!CompanyAddsAPack`{.tla}. The server then blocks until a message
 arrives and processes it accordingly. Here is
@@ -3661,7 +3661,7 @@ design and development of real systems.
 
 The definition that \TLA gives of a system is very general and can apply to
 software as well as hardware systems, at any level of detail. That being said,
-we usually rather use \TLA for high-level descriptions.
+we usually prefer to use \TLA for high-level descriptions.
 
 It is important to describe a system to better understand it: What is its
 environment? What are the external events? What are the internal events? What
@@ -3670,24 +3670,24 @@ itself a lot of ambiguities and makes design choices explicit. The benefit of
 this process is that many problems are solved much sooner and in a much clearer
 way than in an "implementation-first" approach.
 
-We have then seen, once the system described, how to perform "simulations" with
-the checker. The checker is a very accessible and useful tool, but we've also
-exposed some of its limitations. That's why we made a qualitative leap and
-embraced proofs. We have the feeling that using proofs would almost constitute a
-"revolution" in the software industry. Indeed, proofs allow us to design systems
-that are correct *by construction*. Of course, proving properties of a system
-can be hard and requires some training, but the gain in quality is significant.
-Even more importantly, learning to describe formally a system and prove its
-properties amounts to learning to think correctly about systems, which is an
-invaluable skill, way beyond the case of \TLA.
+We have then seen, once the system is described, how to perform "simulations"
+with the checker. The checker is a very accessible and useful tool, but we've
+also discussed some of its limitations. That's why we made a qualitative leap
+and embraced proofs. We have the feeling that using proofs would almost
+constitute a "revolution" in the software industry. Indeed, proofs allow us to
+design systems that are correct *by construction*. Of course, proving properties
+of a system can be hard and requires some training, but the gain in quality is
+significant. Even more importantly, learning to describe formally a system and
+prove its properties amounts to learning to think correctly about systems, which
+is an invaluable skill, well beyond the case of \TLA.
 
 Another aspect of system design is that describing a complete real system in one
 go is not manageable. We have to describe it step-by-step, going from
 higher-level to lower-level. That's why we described the essential notion of
-refinement. One big pro of \TLA is that all notions are mathematically defined,
-which allows for a clear understanding and the development and use of tools
-based on them. We have seen how to check dynamically, and also prove, that a
-model refines another one.
+refinement. One major advantage of \TLA is that all notions are mathematically
+defined, which allows for a clear understanding and the development and use of
+tools based on them. We have seen how to check dynamically, and also prove, that
+a model refines another one.
 
 A big system can often be naturally split into components (horizontal
 decomposition), so we've explained how this can be done through the use of
@@ -3710,8 +3710,8 @@ is correct. Albeit weaker than proofs, by checking more and more runs, one can
 gain confidence that the implementation conforms to the model.
 
 In conclusion, we believe the whole approach described in this document can
-greatly raise the level of quality of the system we build, so learning these
-ideas, tools, techniques is worth the trouble, especially as these ideas are
+greatly raise the level of quality of the systems we build, so learning these
+ideas, tools, and techniques is worth the trouble, especially as these ideas are
 quite standard and form the foundation of other formal tools.
 
 
