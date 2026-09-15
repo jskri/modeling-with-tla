@@ -41,11 +41,12 @@ allow us to prove the properties of our system. For instance, we may be
 interested in some safety properties being invariant (e.g. "it is always the
 case that the cover is closed when the robot moves").
 
-In this tutorial, we will use the
-[\TLA](https://lamport.azurewebsites.net/tla/tla.html) language. It is
-well-known in the industry (used at AWS, Intel, Microsoft...), quite simple and
-comes with useful tools. In particular, it allows one to perform simulations and
-proofs.
+In this tutorial, we will use the \TLA language [^tla]. It is well-known in the
+industry (used at AWS, Intel, Microsoft...), quite simple and comes with useful
+tools. In particular, it allows one to perform simulations and proofs.
+
+[^tla]:
+[lamport.azurewebsites.net/tla/tla.html](https://lamport.azurewebsites.net/tla/tla.html)
 
 The goal of this tutorial is to provide an integrated overview of modeling from
 an engineering perspective. This includes topics such as how to incrementally
@@ -100,12 +101,16 @@ discrete systems are good to describe computer systems. A *behavior* of the
 system is simply a sequence of states.
 
 We now look at the syntax of \TLA. You may test as we go along by downloading
-the so-called ["\TLA toolbox" IDE](https://github.com/tlaplus/tlaplus/releases).
-A [VS Code
-extension](https://marketplace.visualstudio.com/items?itemName=tlaplus.vscode-ide)
-also exists, but its prover support is not complete at the time of this writing
+the so-called "\TLA toolbox" IDE [^toolbox]. A VS Code extension [^vscodeext]
+also exists but its prover support is not complete at the time of this writing
 and we will stick in this tutorial with the "toolbox" IDE (from now on, simply
 called IDE).
+
+[^toolbox]:
+[github.com/tlaplus/tlaplus/releases](https://github.com/tlaplus/tlaplus/releases)
+
+[^vscodeext]:
+[marketplace.visualstudio.com/items?itemName=tlaplus.vscode-ide](https://marketplace.visualstudio.com/items?itemName=tlaplus.vscode-ide)
 
 First, in the IDE create a new model (called here a "Spec"):
 `File > Open Spec > Add New Spec...`{.txt}
@@ -135,14 +140,18 @@ Init ==
   /\ minute \in 0..59
 ```
 
-Note: To facilitate the reading, this document uses a
-[font](https://github.com/jskri/FiraTlas/releases/download/v0.1/FiraTlas-Regular.ttf)
-to render the ASCII version of the mathematical symbols as in the pretty
-printing of specs in PDF (see `File > Produce PDF Version`{.txt}). For instance,
+Note: To facilitate the reading, this document uses a font [^firatlas] to
+render the ASCII version of the mathematical symbols as in the pretty printing
+of specs in PDF (see `File > Produce PDF Version`{.txt}). For instance,
 `==`{.tla}, `/\`{.tla} and `\in`{.tla} are respectively typed as "==", "/\\"
 and\ "\\in" in ASCII. You can of course also use the said font in the IDE. All
-model sources can be found
-[here](https://github.com/jskri/modeling-with-tla/tree/master/src).
+model sources can be found on the GitHub repository [^githubsrc].
+
+[^firatlas]:
+[github.com/jskri/FiraTlas/releases/download/v0.1/FiraTlas-Regular.ttf](https://github.com/jskri/FiraTlas/releases/download/v0.1/FiraTlas-Regular.ttf)
+
+[^githubsrc]:
+[github.com/jskri/modeling-with-tla/tree/master/src](https://github.com/jskri/modeling-with-tla/tree/master/src).
 
 `==`{.tla} means "equals by definition", i.e. it is used to define new symbols.
 `/\`{.tla} is the boolean "and", and `\in`{.tla} means "belongs to set". Here,
@@ -202,9 +211,11 @@ marks the beginning of the specification, while
 ```
 marks its end. Do not write code beyond these boundaries!
 
-You can find this code
-[here](https://github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClock.tla),
-with some small additions that will be covered later.
+You can find this code on the GitHub repository [^wallclocktla], with some
+small additions that will be covered later.
+
+[^wallclocktla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClock.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClock.tla)
 
 "Variables - Init - Next" will be the basic skeleton of all our models. Indeed,
 a \TLA model is always defined inductively by an "initial state" predicate and
@@ -726,9 +737,11 @@ Next ==
 ==============================================================================
 ```
 
-Code can be found
-[here](https://github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClockAlarm.tla),
-with some additions we'll see later.
+Code can be found on the GitHub repository [^wallclockalarmtla] with some
+additions we'll see later.
+
+[^wallclockalarmtla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClockAlarm.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/wallclock/WallClockAlarm.tla)
 
 
 ### Limitations of checking
@@ -951,10 +964,12 @@ solution and its name is proving.
 
 ### Proving properties
 
-Download the [prover](https://github.com/tlaplus/tlapm/releases), as it is not
-installed by default with the toolbox. Then in the toolbox, set the
-`tlapm`{.txt} binary path in `File > Preferences > TLAPS > Location of
-tlapm`{.txt}.
+Download the prover [^prover], as it is not installed by default with the
+toolbox. Then in the toolbox, set the `tlapm`{.txt} binary path in `File >
+Preferences > TLAPS > Location of tlapm`{.txt}.
+
+[^prover]:
+[github.com/tlaplus/tlapm/releases](https://github.com/tlaplus/tlapm/releases)
 
 The prover is general and can be used to prove all sorts of assertions (we call
 "assertion" any valid \TLA formula). However, we'll be interested in this
@@ -1084,11 +1099,13 @@ reason is that too many facts would make the exploration space too big for the
 prover to handle, which could lead to failure by timeout. The human reason is
 that one of the strengths of the declarative approach is to be human-readable
 (contrary to the classical procedural approach, illustrated for instance by the
-[Rocq](https://rocq-prover.org) prover, formerly known as Coq). Since we want a
-human to be able to follow our reasoning, we need to state only the relevant
-facts. Looking at the proof obligation, we understand the cause of the failure:
-knowing only the existence of the model's variables, there is no way the prover
-can prove `Spec => []TypeOK`{.tla}.
+Rocq prover [^rocq], formerly known as Coq). Since we want a human to be able
+to follow our reasoning, we need to state only the relevant facts. Looking at
+the proof obligation, we understand the cause of the failure: knowing only the
+existence of the model's variables, there is no way the prover can prove `Spec
+=> []TypeOK`{.tla}.
+
+[^rocq]: [rocq-prover.org](https://rocq-prover.org)
 
 Let's give the prover some food to eat:
 
@@ -1727,14 +1744,16 @@ express a model in terms of components.
 ## Graphical formalism
 
 We introduce a graphical formalism to describe components, freely adapted from
-[this
-paper](https://link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf). A
-component has input variables, output variables and a control flow. Input
-variables are read, while output variables are written. A variable may be both
-input and output, for example in the case of a consumed variable. A component
-can also have any number of locations, which are used to describe the control
-flow, i.e. when the component starts and stops its execution. Locations can be
-guarded by boolean conditions (true if omitted).
+the Masaccio formal model for embedded components [^masaccio]. A component has
+input variables, output variables and a control flow. Input variables are read,
+while output variables are written. A variable may be both input and output,
+for example in the case of a consumed variable. A component can also have any
+number of locations, which are used to describe the control flow, i.e. when the
+component starts and stops its execution. Locations can be guarded by boolean
+conditions (true if omitted).
+
+[^masaccio]:
+[link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf](https://link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf)
 
 Here is a component:
 
@@ -1901,8 +1920,11 @@ one-step model under the mapping
 
 $(k, l) ⟼ (k, l),\ (k', l) ⟼ (k, l),\ (k', l') ⟼ (k', l')$
 
-The code of the components, with a refinement proof, is available
-[here](https://github.com/jskri/modeling-with-tla/tree/master/src/components/).
+The code of the components, with a refinement proof, is available on the GitHub
+repository [^srccomponent].
+
+[^srccomponent]:
+[github.com/jskri/modeling-with-tla/tree/master/src/components/](https://github.com/jskri/modeling-with-tla/tree/master/src/components/)
 
 The above disjunctive `Next`{.tla} represents simultaneity (under the given
 mapping), which is mandatory in certain cases. Consider for instance a rail
@@ -1996,8 +2018,11 @@ Obviously, the system can be split into two components: the device and the
 server. The following is the component diagram (The name `Theme2`{.tla} stems
 from the existence of a `Theme1`{.tla} model, that doesn't use components and
 that `Theme2`{.tla} refines. We won't examine `Theme1`{.tla} or the refinement
-proof but if you're curious you can find it here:
-[Theme1](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme1.tla))
+proof but if you're curious you can find it on the GitHub repository
+[^theme1tla].
+
+[^theme1tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme1.tla)
 
 
 <div id="theme_components"></div>
@@ -2421,11 +2446,17 @@ always straightforward because we have to take into account shared variables.
 However, by decomposing the proof into sufficiently small steps, the
 justifications may be not so hard to find.
 
-The specification files can be found here:
-[Theme2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme2.tla),
-[Device1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Device1.tla)
-and
-[Server1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Server1.tla).
+The specification files can be found on the GitHub repository [^theme2tla]
+[^themedevice1tla] [^themeserver1tla].
+
+[^theme2tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme2.tla)
+
+[^themedevice1tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeDevice1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeDevice1.tla)
+
+[^themeserver1tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer1.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer1.tla)
 
 
 ### Refining the model
@@ -2653,8 +2684,11 @@ their `Device1`{.tla} counterparts; `DeviceReceivesGetReply`{.tla} maps to
       DEF Next, DeviceReceivesGetReply, Device1!ReceivesNewPack
 ```
 
-The rest of the proof is straightforward. Here is the complete module:
-[ThemeDevice2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeDevice2.tla)
+The rest of the proof is straightforward. You can find the complete module on
+the GitHub repository [^themedevice2tla].
+
+[^themedevice2tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeDevice2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeDevice2.tla)
 
 #### Refining the server component
 
@@ -2674,9 +2708,11 @@ LEMMA NextRefinesServer1Next ==
 <1>5. QED
 ```
 
-The proof presents no difficulty. The source of the complete module can be found
-here:
-[ThemeServer2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer2.tla)
+The proof presents no difficulty. See the GitHub repository for the source of
+the complete module [^themeserver2tla].
+
+[^themeserver2tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeServer2.tla)
 
 #### Refining the theme model
 
@@ -2873,8 +2909,10 @@ The full proof of `<2>1`{.tla} is as follows:
 
 The proof of the server counterpart `<2>2`{.tla} is similar.
 
-The complete module with its proofs can be found here:
-[Theme3.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme3.tla)
+See the GitHub repository for the complete module with its proofs [^theme3tla].
+
+[^theme3tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme3.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/Theme3.tla)
 
 
 ## Recommendations
@@ -2906,10 +2944,11 @@ attempting to prove it.
 
 Having different tools based on (subsets of) the same language is one of the
 strengths of \TLA. Other tools not covered in this document may also be useful,
-such as the [Apalache](https://apalache-mc.org/) checker to check whether an
-invariant is indeed inductive, so we encourage the reader to take a closer look
-at the \TLA ecosystem.
+such as the Apalache [^apalache] checker to check whether an invariant is
+indeed inductive, so we encourage the reader to take a closer look at the \TLA
+ecosystem.
 
+[^apalache]: [apalache-mc.org](https://apalache-mc.org/)
 
 
 # Conforming
@@ -2956,14 +2995,13 @@ allowing for investigation.
 
 We see that this approach does not rely on proof. And it cannot as the
 implementation has not been mechanically generated from the model. Mechanical
-generation is possible with other systems, e.g. the
-[Rocq](https://rocq-prover.org) prover, and allows for so-called certified
-programs. However, it must be noted that such approaches are typically much
-"heavier", compared to the \TLA approach. In contrast, the procedure presented
-here can only validate one specific behavior at a time. Consequently, it does
-not allow for complete certainty but only for greater confidence in the
-correctness of the implementation: the greater the number of validated
-behaviors, the greater the confidence.
+generation is possible with other systems, e.g. the Rocq prover, and allows for
+so-called certified programs. However, it must be noted that such approaches
+are typically much "heavier", compared to the \TLA approach. In contrast, the
+procedure presented here can only validate one specific behavior at a time.
+Consequently, it does not allow for complete certainty but only for greater
+confidence in the correctness of the implementation: the greater the number of
+validated behaviors, the greater the confidence.
 
 
 ## Implementing in `C++`
@@ -2971,12 +3009,14 @@ behaviors, the greater the confidence.
 Let us now see the concrete details of the implementation. We will concentrate
 on the internal part of the system, implementing a client (the "device") and a
 server. In particular, we are not interested here in
-`Device2!UserSelectsATheme`{.tla} and `Device2!UserUpgradesSelectedTheme`{.tla} as
-they belong to the environment part. The implementation will be done in C++20
-and the communication will use the [ZeroMQ socket library](https://zeromq.org/)
-for convenience. Note that this implementation will be a bit naive to avoid too
+`Device2!UserSelectsATheme`{.tla} and `Device2!UserUpgradesSelectedTheme`{.tla}
+as they belong to the environment part. The implementation will be done in
+C++20 and the communication will use the ZeroMQ socket library [^zeromq] for
+convenience. Note that this implementation will be a bit naive to avoid too
 much details that would obfuscate our purpose of exposing how an implementation
 can be checked against its model.
+
+[^zeromq]: [zeromq.org](https://zeromq.org/)
 
 ### Client
 
@@ -3140,9 +3180,14 @@ The implementations of `DeviceReceivesListReply`{.tla},
 straightforward. Note that when searching for a pack to request, the first one
 the client does not have yet is picked.
 
-The source files can be found here:
-[common.hpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/common.hpp),
-[client.cpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/client.cpp)
+The source files can be found on the GitHub repository [^themecommonhpp]
+[^themeclientcpp].
+
+[^themecommonhpp]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/common.hpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/common.hpp)
+
+[^themeclientcpp]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/client.cpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/client.cpp)
 
 
 ### Server
@@ -3274,8 +3319,10 @@ The ids are logged in case of handling a list request, and the returned pack is
 logged in case of a get request. This is to complete the logs by
 post-processing. The rest of the implementation is unsurprising.
 
-The server can be found here:
-[server.cpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/server.cpp),
+See the GitHub repository for source of the server [^themeservercpp].
+
+[^themeservercpp]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/server.cpp](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/server.cpp)
 
 ### Launch
 
@@ -3306,10 +3353,10 @@ The client can be launched with:
 ./client initial_pack.txt tcp://127.0.0.1:12345 | tee client.log
 ```
 
-Note that thanks to [ZeroMQ](https://zeromq.org/), the launch order of the
-server and client does not matter. Also, for local communication it is possible
-to use shared memory by using the `ipc`{.txt} scheme in the endpoint (e.g.
-`ipc://@themeserver`{.txt} on Linux).
+Note that thanks to ZeroMQ, the launch order of the server and client does not
+matter. Also, for local communication it is possible to use shared memory by
+using the `ipc`{.txt} scheme in the endpoint (e.g. `ipc://@themeserver`{.txt}
+on Linux).
 
 After the client and server have been launched, they can be stopped once the client
 has got all server packs. Here is an example of the resulting log files.
@@ -3374,8 +3421,11 @@ The algorithm is:
 
     2. print $d$ in a formatted manner: `<<val1, ...>>, (* <event>, <timestamp> *)`{.txt}
 
-You can find here a python script implementing the algorithm:
-[merge_logs.py](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/merge_logs.py)
+You can find on the GitHub repository the `merge_logs.py` script implementing
+the algorithm [^mergelogspy].
+
+[^mergelogspy]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/merge_logs.py](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/implementation/merge_logs.py)
 
 The script can be run with:
 
@@ -3508,9 +3558,12 @@ variable its corresponding variable in the replay model (which is implicit by
 the omission of the `WITH`{.tla} clause).
 
 We now create a checker configuration (called in the IDE a "TLC model") and
-assign assumption-compatible values to constants (see
-[`ThemeCommon2.tla`](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCommon2.tla)
-for assumptions). In the IDE, the configuration can be accessed through
+assign assumption-compatible values to constants (see `ThemeCommon2.tla`
+[^themecommon2tla] for the assumptions). In the IDE, the configuration can be
+accessed through
+
+[^themecommon2tla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCommon2.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCommon2.tla)
 
 `TLC model checker > New Model > Model Overview > Model Description > What is the model?`{.txt}
 
@@ -3653,8 +3706,10 @@ Running the checker again results in no error. We can therefore say that the
 `Theme3`{.tla} implementation was in this case correct. To gain a greater
 confidence in the implementation, we can produce more traces and check them.
 
-The replay model is available here:
-[ThemeCheckImpl.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCheckImpl.tla)
+The replay model is available on the GitHub repository [^themecheckimpltla].
+
+[^themecheckimpltla]:
+[github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCheckImpl.tla](https://github.com/jskri/modeling-with-tla/tree/master/src/theme/ThemeCheckImpl.tla)
 
 
 # Conclusion
@@ -3738,9 +3793,8 @@ author's own.
 - Specifying systems (Lamport, 2002) \
   [lamport.azurewebsites.net/tla/book.html#download](https://lamport.azurewebsites.net/tla/book.html#download)
 
-- The \TLA Hyperbook (Lamport, 2022) \
+- The \TLA Hyperbook (Lamport, 2022) (especially "The \TLA Proof Track") \
   [lamport.azurewebsites.net/tla/hyperbook.html](https://lamport.azurewebsites.net/tla/hyperbook.html)
-(especially "The \TLA Proof Track")
 
 - Auxiliary Variables in \TLA (Lamport, Merz, 2017) \
   [lamport.azurewebsites.net/pubs/auxiliary.pdf](https://lamport.azurewebsites.net/pubs/auxiliary.pdf)
