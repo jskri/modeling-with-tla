@@ -3725,26 +3725,36 @@ quite standard and form the foundation of other formal tools.
 Thanks to the following people for their feedback. All remaining errors are the
 author's own.
 
-- [Stephan Merz](https://members.loria.fr/Stephan.Merz/)
+- Stephan Merz \
+  [members.loria.fr/Stephan.Merz](https://members.loria.fr/Stephan.Merz/)
 
-- [Andrew Helwer](https://ahelwer.ca/)
+- Andrew Helwer \
+  [ahelwer.ca](https://ahelwer.ca/)
 
 
 
 # Sources
 
-- [Specifying systems (Lamport, 2002)](https://lamport.azurewebsites.net/tla/book.html#download)
+- Specifying systems (Lamport, 2002) \
+  [lamport.azurewebsites.net/tla/book.html#download](https://lamport.azurewebsites.net/tla/book.html#download)
 
-- [The \TLA Hyperbook (Lamport,
-  2022)](https://lamport.azurewebsites.net/tla/hyperbook.html) (especially "The \TLA Proof Track")
+- The \TLA Hyperbook (Lamport, 2022) \
+  [lamport.azurewebsites.net/tla/hyperbook.html](https://lamport.azurewebsites.net/tla/hyperbook.html)
+(especially "The \TLA Proof Track")
 
-- [Auxiliary Variables in \TLA (Lamport, Merz, 2017)](https://lamport.azurewebsites.net/pubs/auxiliary.pdf)
+- Auxiliary Variables in \TLA (Lamport, Merz, 2017) \
+  [lamport.azurewebsites.net/pubs/auxiliary.pdf](https://lamport.azurewebsites.net/pubs/auxiliary.pdf)
 
-- [Inductive invariants - Surfing Complexity (Hochstein, 2018)](https://surfingcomplexity.blog/2018/12/27/inductive-invariants/)
+- Inductive invariants - Surfing Complexity (Hochstein, 2018) \
+  [surfingcomplexity.blog/2018/12/27/inductive-invariants](https://surfingcomplexity.blog/2018/12/27/inductive-invariants/)
 
-- [Masaccio: A Formal Model for Embedded Components (Henzinger, 2000)](https://link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf )
+- Masaccio: A Formal Model for Embedded Components (Henzinger, 2000) \
+  [link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf
+](https://link.springer.com/content/pdf/10.1007/3-540-44929-9_38.pdf )
 
-- [Verifying Software Traces Against a Formal Specification with \TLA and TLC
-  (Pressler, 2018)](https://pron.github.io/files/Trace.pdf)
+- Verifying Software Traces Against a Formal Specification with \TLA and TLC
+  (Pressler, 2018) \
+  [pron.github.io/files/Trace.pdf](https://pron.github.io/files/Trace.pdf)
 
-- [eXtreme Modelling in Practice (Davis, Hirschhorn, Schvimer, 2020)](https://arxiv.org/pdf/2006.00915.pdf)
+- eXtreme Modelling in Practice (Davis, Hirschhorn, Schvimer, 2020) \
+  [arxiv.org/pdf/2006.00915.pdf](https://arxiv.org/pdf/2006.00915.pdf)
